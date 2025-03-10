@@ -25,7 +25,6 @@ int	main(void)
 	
 	pid = getgid();
 	ft_putstr("PID -> ");
-	printf("%d\n", pid);
 	ft_putnbr(pid);
 	ft_putchar('\n');
 	signal(SIGUSR2, handler);
