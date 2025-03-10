@@ -1,6 +1,6 @@
 #include "minitalk.h"
 
-void	send_signal(int pid, unsigned char c)
+void	send_signal(pid_t pid, unsigned char c)
 {
 	int	i;
 	unsigned char	tmp;
@@ -10,7 +10,7 @@ void	send_signal(int pid, unsigned char c)
 	while (i > 0)
 	{
 		i--;
-		tmp = c << i;
+		tmp = c >> i;
 		if (tmp % 2 == 0)
 			kill(pid, SIGUSR2);
 		else

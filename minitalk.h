@@ -8,7 +8,9 @@
 #include <stdlib.h>
 
 int     ft_atoi(char *s);
-void	*ft_putstr(char *s);
-void	send_signal(int pid, unsigned char c);
+void	ft_putstr(char *s);
+void	ft_putchar(char c);
+void	ft_putnbr(int n);
+void	send_signal(pid_t pid, unsigned char c);
 
 #endif

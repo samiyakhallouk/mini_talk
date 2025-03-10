@@ -1,25 +1,36 @@
 #include "minitalk.h"
 
 
-void    handler(int signum)
+void	handler(int signal)
 {
-    printf("Received SIGINT!\n", signum);
-    exit(0);
+	static	unsigned char	reminder;
+	static	int				i;
+
+	reminder |= (signal == SIGUSR1);
+	i++;
+	if (i == 8)
+	{
+		ft_putchar(reminder);
+		reminder = 0;
+		i = 0;
+	}
+	else
+		reminder <<= 1;
+
 }
 
-
-int main(void)
+int	main(void)
 {
-    int p = getgid();
-    printf("pid is : %d\n", p);
-    signal(SIGINT, handler);
-    signal(SIGTERM, handler);
-    while (1)
-    {
-        pause();
-    }
-    
-    
-    
-    return 0;
+	pid_t	pid;
+	
+	pid = getgid();
+	ft_putstr("PID -> ");
+	printf("%d\n", pid);
+	ft_putnbr(pid);
+	ft_putchar('\n');
+	signal(SIGUSR2, handler);
+	signal(SIGUSR1, handler);
+	while (1)
+		pause();
+	return 0;
 }
