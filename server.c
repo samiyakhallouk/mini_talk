@@ -1,5 +1,16 @@
-#include "minitalk.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skhallou <skhallou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/10 20:49:48 by skhallou          #+#    #+#             */
+/*   Updated: 2025/03/11 14:06:20 by skhallou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "minitalk.h"
 
 void	handler(int signal)
 {
@@ -7,6 +18,7 @@ void	handler(int signal)
 	static	int				i;
 
 	reminder |= (signal == SIGUSR1);
+	printf("%d\n", signal);
 	i++;
 	if (i == 8)
 	{
@@ -22,8 +34,8 @@ void	handler(int signal)
 int	main(void)
 {
 	pid_t	pid;
-	
-	pid = getgid();
+
+	pid = getpid();
 	ft_putstr("PID -> ");
 	ft_putnbr(pid);
 	ft_putchar('\n');

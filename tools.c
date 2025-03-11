@@ -20,6 +20,7 @@ int	ft_atoi(char *s)
 	while (s[i] >= '0' && s[i] <= '9')
 	{
 		r = r * 10 + s[i] - '0';
+		i++;
 	}
 	return (r * sign);
 }
@@ -31,9 +32,17 @@ void	ft_putchar(char c)
 
 void	ft_putnbr(int n)
 {
-	if (n > 9)
-		ft_putnbr(n / 10);
-	ft_putchar(n % 10 + '0');
+	long	nb;
+
+	nb = n;
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb *= -1;
+	}
+	if (nb > 9)
+		ft_putnbr(nb / 10);
+	ft_putchar(nb % 10 + '0');
 }
 
 void	ft_putstr(char *s)
