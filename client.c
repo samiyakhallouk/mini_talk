@@ -6,13 +6,13 @@
 /*   By: skhallou <skhallou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 20:49:36 by skhallou          #+#    #+#             */
-/*   Updated: 2025/03/11 13:44:18 by skhallou         ###   ########.fr       */
+/*   Updated: 2025/03/11 16:22:38 by skhallou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	send_signal(pid_t pid, unsigned char c)
+void	send_signal(int pid, unsigned char c)
 {
 	int				i;
 	unsigned char	tmp;
@@ -29,12 +29,11 @@ void	send_signal(pid_t pid, unsigned char c)
 			kill(pid, SIGUSR1);
 		usleep(500);
 	}
-	
 }
 
 int	main(int ac, char **av)
 {
-	pid_t	pid;
+	int	pid;
 	int		i;
 
 	if (ac != 3)

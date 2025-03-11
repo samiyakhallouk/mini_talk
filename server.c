@@ -6,7 +6,7 @@
 /*   By: skhallou <skhallou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 20:49:48 by skhallou          #+#    #+#             */
-/*   Updated: 2025/03/11 14:06:20 by skhallou         ###   ########.fr       */
+/*   Updated: 2025/03/11 16:36:57 by skhallou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	handler(int signal)
 	static	int				i;
 
 	reminder |= (signal == SIGUSR1);
-	printf("%d\n", signal);
+	// printf("%d\n", signal);
 	i++;
 	if (i == 8)
 	{
@@ -33,7 +33,7 @@ void	handler(int signal)
 
 int	main(void)
 {
-	pid_t	pid;
+	int	pid;
 
 	pid = getpid();
 	ft_putstr("PID -> ");
