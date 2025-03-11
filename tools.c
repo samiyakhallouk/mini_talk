@@ -32,7 +32,7 @@ void	ft_putchar(char c)
 
 void	ft_putnbr(int n)
 {
-	long nb;
+	long	nb;
 
 	nb = n;
 	if (nb < 0)
