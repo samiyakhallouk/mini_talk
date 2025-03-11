@@ -11,6 +11,7 @@ CLIENT_OBJ = $(CLIENT_SRC:.c=.o)
 SERVER_OBJ = $(SERVER_SRC:.c=.o)
 HEAD = minitalk.h
 
+
 %.o: %.c $(HEAD)
 	$(CC) $(CFLAGS) -c $< -o $@
 
