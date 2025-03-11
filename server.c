@@ -6,11 +6,18 @@
 /*   By: skhallou <skhallou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 20:49:48 by skhallou          #+#    #+#             */
-/*   Updated: 2025/03/11 16:36:57 by skhallou         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:48:21 by skhallou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+static void	protection(int r)
+{
+	if (r == -1)
+		exit(1);
+		
+}
 
 void	handler(int signal)
 {
@@ -18,7 +25,6 @@ void	handler(int signal)
 	static	int				i;
 
 	reminder |= (signal == SIGUSR1);
-	// printf("%d\n", signal);
 	i++;
 	if (i == 8)
 	{
@@ -39,8 +45,8 @@ int	main(void)
 	ft_putstr("PID -> ");
 	ft_putnbr(pid);
 	ft_putchar('\n');
-	signal(SIGUSR2, handler);
-	signal(SIGUSR1, handler);
+	protection(signal(SIGUSR2, handler));
+	protection(signal(SIGUSR1, handler));
 	while (1)
 		pause();
 	return 0;

@@ -6,11 +6,18 @@
 /*   By: skhallou <skhallou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 20:49:36 by skhallou          #+#    #+#             */
-/*   Updated: 2025/03/11 16:22:38 by skhallou         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:20:25 by skhallou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+static void	protection(int r)
+{
+	if (r == -1)
+		exit(1);
+		
+}
 
 void	send_signal(int pid, unsigned char c)
 {
@@ -24,9 +31,9 @@ void	send_signal(int pid, unsigned char c)
 		i--;
 		tmp = c >> i;
 		if (tmp % 2 == 0)
-			kill(pid, SIGUSR2);
+			protection(kill(pid, SIGUSR2));
 		else
-			kill(pid, SIGUSR1);
+			protection(kill(pid, SIGUSR1));
 		usleep(500);
 	}
 }
