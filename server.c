@@ -6,7 +6,7 @@
 /*   By: skhallou <skhallou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 20:49:48 by skhallou          #+#    #+#             */
-/*   Updated: 2025/03/11 17:48:21 by skhallou         ###   ########.fr       */
+/*   Updated: 2025/03/12 17:33:33 by skhallou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,21 @@ static void	protection(int r)
 		
 }
 
-void	handler(int signal)
+void	handler(int signal, siginfo_t *s, void *b)
 {
-	static	unsigned char	reminder;
-	static	int				i;
+	static unsigned char	reminder;
+	static int				i;
+	static int				cpid;
 
+	(void)b;
+	// (void)s;
 	reminder |= (signal == SIGUSR1);
+	if (s->si_pid != cpid)
+	{
+		cpid = s->si_pid;
+		i = 0;
+		reminder = 0;
+	}
 	i++;
 	if (i == 8)
 	{
@@ -34,19 +43,23 @@ void	handler(int signal)
 	}
 	else
 		reminder <<= 1;
+	usleep(500);
 
 }
 
 int	main(void)
 {
 	int	pid;
+	struct sigaction	s;
 
 	pid = getpid();
 	ft_putstr("PID -> ");
 	ft_putnbr(pid);
 	ft_putchar('\n');
-	protection(signal(SIGUSR2, handler));
-	protection(signal(SIGUSR1, handler));
+	s.sa_sigaction = handler;
+	s.sa_flags = SA_SIGINFO;
+	protection(sigaction(SIGUSR2, &s, NULL));
+	protection(sigaction(SIGUSR1, &s, NULL));
 	while (1)
 		pause();
 	return 0;
