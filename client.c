@@ -6,7 +6,7 @@
 /*   By: skhallou <skhallou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 20:49:36 by skhallou          #+#    #+#             */
-/*   Updated: 2025/03/12 16:08:17 by skhallou         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:58:35 by skhallou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ static void	protection(int r)
 		exit(1);
 		
 }
+void	check_sig(int sig)
+{
+	if (sig == SIGUSR1)
+		return ;
+}
 
 void	send_signal(int pid, unsigned char c)
 {
@@ -26,7 +31,8 @@ void	send_signal(int pid, unsigned char c)
 
 	tmp = c;
 	i = 8;
-	while (i > 0)
+	signal(SIGUSR1, check_sig);
+	while (i)
 	{
 		i--;
 		tmp = c >> i;
@@ -34,7 +40,7 @@ void	send_signal(int pid, unsigned char c)
 			protection(kill(pid, SIGUSR2));
 		else
 			protection(kill(pid, SIGUSR1));
-		usleep(500);
+		pause();
 	}
 }
 
