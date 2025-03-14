@@ -6,7 +6,7 @@
 /*   By: skhallou <skhallou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 20:49:36 by skhallou          #+#    #+#             */
-/*   Updated: 2025/03/13 14:58:35 by skhallou         ###   ########.fr       */
+/*   Updated: 2025/03/14 14:57:45 by skhallou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ void	send_signal(int pid, unsigned char c)
 
 int	main(int ac, char **av)
 {
-	int	pid;
+	int		pid;
 	int		i;
 
 	if (ac != 3)
 	{
-		ft_putstr("Invalid number of arguments");
+		ft_putstr("Invalid number of arguments\n");
 		return (1);
 	}
 	pid = ft_atoi(av[1]);

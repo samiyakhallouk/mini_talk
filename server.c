@@ -6,7 +6,7 @@
 /*   By: skhallou <skhallou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 20:49:48 by skhallou          #+#    #+#             */
-/*   Updated: 2025/03/13 15:05:40 by skhallou         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:28:35 by skhallou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void	protection(int r)
 
 void	handler(int signal, siginfo_t *s, void *b)
 {
-	static unsigned char	reminder = 0;
-	static int				i = 0;
-	static int				cpid = 0;
+	static unsigned char	reminder;
+	static int				i;
+	static int				cpid;
 
 	(void)b;
 	if (s->si_pid != cpid)
@@ -42,7 +42,6 @@ void	handler(int signal, siginfo_t *s, void *b)
 	}
 	usleep(500);
 	kill(s->si_pid, SIGUSR1);
-
 }
 
 int	main(void)
