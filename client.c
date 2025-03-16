@@ -6,7 +6,7 @@
 /*   By: skhallou <skhallou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 20:49:36 by skhallou          #+#    #+#             */
-/*   Updated: 2025/03/14 14:57:45 by skhallou         ###   ########.fr       */
+/*   Updated: 2025/03/16 15:43:34 by skhallou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,23 @@ void	send_signal(int pid, unsigned char c)
 		pause();
 	}
 }
+int	is_valid(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] < '0' || s[i] > '9')
+		{
+			ft_putstr("Invalid PID\n");
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
 
 int	main(int ac, char **av)
 {
@@ -54,9 +71,14 @@ int	main(int ac, char **av)
 		ft_putstr("Invalid number of arguments\n");
 		return (1);
 	}
-	pid = ft_atoi(av[1]);
-	if (pid <= 0)
+	if (is_valid(av[1]) == 0)
 		return (1);
+	pid = ft_atoi(av[1]);
+	if (pid <= 0 || pid > 4194304)
+	{
+		ft_putstr("Invalid PID\n");
+		return (1);
+	}
 	i = 0;
 	while (av[2][i])
 		send_signal(pid, av[2][i++]);
