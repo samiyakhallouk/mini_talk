@@ -14,9 +14,9 @@
 
 int	ft_atoi(char *s)
 {
-   int	i;
-   int	sign;
-   int	r;
+	int	i;
+	int	sign;
+	int	r;
 
 	i = 0;
 	r = 0;
@@ -64,8 +64,8 @@ void	ft_putstr(char *s)
 	i = 0;
 	if (!s)
 	{
-		write(1,"(null)", 6);
-		return;
+		write(1, "(null)", 6);
+		return ;
 	}
 	while (s[i])
 	{
@@ -73,4 +73,3 @@ void	ft_putstr(char *s)
 		i++;
 	}
 }
-

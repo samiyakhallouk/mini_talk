@@ -16,15 +16,15 @@ static void	protection(int r)
 {
 	if (r == -1)
 		exit(1);
-		
 }
+
 void	check_sig(int sig)
 {
 	if (sig == SIGUSR1)
 		return ;
 }
 
-void	send_signal(int pid, unsigned char c)
+void	send_signal(pid_t pid, unsigned char c)
 {
 	int				i;
 	unsigned char	tmp;
@@ -43,6 +43,7 @@ void	send_signal(int pid, unsigned char c)
 		pause();
 	}
 }
+
 int	is_valid(char *s)
 {
 	int	i;
@@ -60,10 +61,9 @@ int	is_valid(char *s)
 	return (1);
 }
 
-
 int	main(int ac, char **av)
 {
-	int		pid;
+	pid_t	pid;
 	int		i;
 
 	if (ac != 3)

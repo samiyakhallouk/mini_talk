@@ -16,13 +16,12 @@ static void	protection(int r)
 {
 	if (r == -1)
 		exit(1);
-		
 }
 
 void	free_tab(char **tab)
 {
 	free(*tab);
-	*tab = NULL;	
+	*tab = NULL;
 }
 
 void	write_tab(char **tab, int *pid)
@@ -63,7 +62,7 @@ void	handler(int signal, siginfo_t *s, void *b)
 
 int	main(void)
 {
-	int	pid;
+	pid_t				pid;
 	struct sigaction	s;
 
 	pid = getpid();
@@ -76,5 +75,5 @@ int	main(void)
 	protection(sigaction(SIGUSR1, &s, NULL));
 	while (1)
 		pause();
-	return 0;
+	return (0);
 }

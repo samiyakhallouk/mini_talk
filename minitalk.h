@@ -11,20 +11,17 @@
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
-#define MINITALK_H
+# define MINITALK_H
 
-                                                              
 # include <unistd.h>
 # include <signal.h>
 # include <stdlib.h>
-#include <stdio.h>
 
-int     ft_atoi(char *s);
+int		ft_atoi(char *s);
 void	ft_putstr(char *s);
 void	ft_putchar(char c);
 void	ft_putnbr(int n);
-void	send_signal(int pid, unsigned char c);
-size_t	ft_strlen(const char *s);
+void	send_signal(pid_t pid, unsigned char c);
 void	handler(int signal, siginfo_t *s, void *b);
 
 #endif

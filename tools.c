@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tools.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skhallou <skhallou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/17 14:56:19 by skhallou          #+#    #+#             */
+/*   Updated: 2025/03/17 14:56:21 by skhallou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
 int	ft_atoi(char *s)
 {
-   int	i;
-   int	sign;
-   int	r;
+	int	i;
+	int	sign;
+	int	r;
 
 	i = 0;
 	r = 0;
@@ -52,8 +64,8 @@ void	ft_putstr(char *s)
 	i = 0;
 	if (!s)
 	{
-		write(1,"(null)", 6);
-		return;
+		write(1, "(null)", 6);
+		return ;
 	}
 	while (s[i])
 	{
